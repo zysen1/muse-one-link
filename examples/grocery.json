@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "name": "晚餐补货演示",
+  "isDemo": true,
+  "description": "仅用于验证食材缺口计算。菜单不是完整菜谱，未连接真实商家。每个验收场景都从 baseline 独立开始。",
+  "baseline": {
+    "inventory": [
+      { "ingredientId": "egg", "name": "鸡蛋", "quantity": 1, "unit": "个" },
+      { "ingredientId": "tomato", "name": "番茄", "quantity": 0, "unit": "个" }
+    ],
+    "meals": [
+      {
+        "id": "tonight",
+        "label": "今晚",
+        "name": "番茄炒蛋",
+        "selected": true,
+        "ingredients": [
+          { "ingredientId": "egg", "quantity": 3, "unit": "个" },
+          { "ingredientId": "tomato", "quantity": 2, "unit": "个" }
+        ]
+      },
+      {
+        "id": "tomorrow",
+        "label": "明晚",
+        "name": "紫菜蛋花汤",
+        "selected": true,
+        "ingredients": [
+          { "ingredientId": "egg", "quantity": 2, "unit": "个" }
+        ]
+      }
+    ]
+  },
+  "acceptanceCases": [
+    {
+      "id": "both_meals",
+      "description": "两顿都吃，保留默认库存",
+      "selectedMealIds": ["tonight", "tomorrow"],
+      "inventoryOverrides": {},
+      "expectedShortage": { "egg": 4, "tomato": 2 }
+    },
+    {
+      "id": "cancel_tonight",
+      "description": "取消今晚，只保留明晚",
+      "selectedMealIds": ["tomorrow"],
+      "inventoryOverrides": {},
+      "expectedShortage": { "egg": 1, "tomato": 0 }
+    },
+    {
+      "id": "restore_with_two_eggs",
+      "description": "恢复两顿，鸡蛋库存改为两个",
+      "selectedMealIds": ["tonight", "tomorrow"],
+      "inventoryOverrides": { "egg": 2 },
+      "expectedShortage": { "egg": 3, "tomato": 2 }
+    }
+  ],
+  "shopping": {
+    "merchant": null,
+    "deliveryArea": null,
+    "cartConnected": false,
+    "defaultMode": "read_only",
+    "checkoutEnabled": false
+  }
+}

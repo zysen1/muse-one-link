@@ -1,0 +1,31 @@
+{
+  "name": "Muse One Link",
+  "version": "0.1.0",
+  "repository": "https://github.com/zysen1/muse-one-link",
+  "cases": [
+    {
+      "id": "video",
+      "label": "连贯短片与抽卡",
+      "entry": "cases/video/README.md",
+      "url": "https://github.com/zysen1/muse-one-link/tree/main/cases/video"
+    },
+    {
+      "id": "cloud",
+      "label": "免费云部署与工具箱",
+      "entry": "cases/cloud/README.md",
+      "url": "https://github.com/zysen1/muse-one-link/tree/main/cases/cloud"
+    },
+    {
+      "id": "digest",
+      "label": "今日精选",
+      "entry": "cases/digest/README.md",
+      "url": "https://github.com/zysen1/muse-one-link/tree/main/cases/digest"
+    },
+    {
+      "id": "grocery",
+      "label": "晚餐补货",
+      "entry": "cases/grocery/README.md",
+      "url": "https://github.com/zysen1/muse-one-link/tree/main/cases/grocery"
+    }
+  ]
+}

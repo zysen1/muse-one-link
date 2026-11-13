@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "kind": "muse-one-link-video-plan",
+  "name": "街角的早晨",
+  "status": "planned",
+  "targetDurationSeconds": 30,
+  "aspectRatio": "9:16",
+  "style": "自然日光，普通成年人物，日常随拍，简单动作",
+  "limits": {
+    "initialMaxGenerationJobs": 3,
+    "initialCandidatesPerShot": 1,
+    "automaticAdditionalGenerations": false
+  },
+  "capabilities": {
+    "checked": false,
+    "supportedDurationsSeconds": [],
+    "referenceFrameMode": null,
+    "generationTool": null
+  },
+  "continuity": {
+    "person": "同一位成年早餐摊主，浅色上衣、深灰围裙",
+    "place": "同一处白天街边早餐摊、同一张木质柜台",
+    "props": "同一个立体牛皮纸早餐袋；保持形状、大小与内容物一致",
+    "camera": "柜台外中景，避免突然跨越人物运动轴线",
+    "referenceFiles": []
+  },
+  "shots": [
+    {
+      "id": "shot-01",
+      "plannedDurationSeconds": 10,
+      "startAction": "摊主把早餐放进纸袋",
+      "endState": "完整纸袋立在柜台上，摊主手掌靠近纸袋侧面",
+      "dependsOnShotId": null,
+      "usedUpstreamCandidateId": null,
+      "referenceFrameFile": null,
+      "selectedCandidateId": null,
+      "needsContinuityReview": false,
+      "candidates": []
+    },
+    {
+      "id": "shot-02",
+      "plannedDurationSeconds": 10,
+      "startAction": "接续实际选定的上一段结尾，轻推完整纸袋",
+      "endState": "纸袋靠近柜台边缘，保持立体形状",
+      "dependsOnShotId": "shot-01",
+      "usedUpstreamCandidateId": null,
+      "referenceFrameFile": null,
+      "selectedCandidateId": null,
+      "needsContinuityReview": false,
+      "candidates": []
+    },
+    {
+      "id": "shot-03",
+      "plannedDurationSeconds": 10,
+      "startAction": "接续实际选定的上一段结尾，顾客从柜台边拿起纸袋",
+      "endState": "顾客取走纸袋，摊主自然收手，保持同一场景",
+      "dependsOnShotId": "shot-02",
+      "usedUpstreamCandidateId": null,
+      "referenceFrameFile": null,
+      "selectedCandidateId": null,
+      "needsContinuityReview": false,
+      "candidates": []
+    }
+  ],
+  "outputs": [],
+  "notes": [
+    "这是未执行的示例计划，不包含任何生成结果。",
+    "plannedDurationSeconds 为规划值，执行前按当前工具实际支持的时长调整。",
+    "只记录候选与参考文件在项目内的路径，不把凭据写入项目文件。"
+  ]
+}

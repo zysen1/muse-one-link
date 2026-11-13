@@ -1,0 +1,14 @@
+# User data must remain in the private runtime workspace
+.env
+.env.*
+!.env.example
+**/secrets*
+**/credentials*
+**/cookies*
+**/runtime/
+**/data/
+**/outputs/
+**/node_modules/
+__pycache__/
+*.pyc
+.DS_Store
