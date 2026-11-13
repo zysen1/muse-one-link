@@ -15,7 +15,7 @@ for path in files:
             json.loads(path.read_text())
         except (ValueError, UnicodeError) as exc:
             errors.append(f'{path.relative_to(ROOT)}: invalid JSON: {exc}')
-    if path.suffix != '.md':
+    if path.suffix not in ('.md', '.txt', '.json'):
         continue
     text = path.read_text()
     for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', text):
@@ -31,8 +31,20 @@ for path in files:
             errors.append(f'{path.relative_to(ROOT)}: private workspace reference')
     if re.search(r'(?<!\d)1[3-9]\d{9}(?!\d)', text):
         errors.append(f'{path.relative_to(ROOT)}: review possible personal phone number')
-    if re.search(r'gh[pousr]_[A-Za-z0-9]{30,}', text):
+    if re.search(r'(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,})', text):
         errors.append(f'{path.relative_to(ROOT)}: possible GitHub token')
+
+cloud = ROOT / 'cases/cloud/codespaces'
+for name in ('README.md', 'PROMPT.md', 'app.py', 'start.py', 'verification.json'):
+    if not (cloud / name).is_file():
+        errors.append(f'missing Codespaces case file: {name}')
+config = json.loads((ROOT / '.devcontainer/devcontainer.json').read_text())
+if config.get('forwardPorts') != [8000] or config.get('postStartCommand') != 'python3 cases/cloud/codespaces/start.py start':
+    errors.append('Codespaces startup/port configuration mismatch')
+for item in json.loads((cloud / 'verification.json').read_text())['checks']:
+    count = sum(not c.isspace() for c in item['text'])
+    if count != item['char_count'] or round(count * 60 / item['cpm'], 2) != item['estimated_seconds']:
+        errors.append('Codespaces recorded acceptance case mismatch')
 
 catalog = json.loads((ROOT / 'catalog.json').read_text())
 if {c['id'] for c in catalog['cases']} != {'video', 'cloud', 'digest', 'grocery'}:

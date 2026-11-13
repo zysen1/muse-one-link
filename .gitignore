@@ -12,3 +12,7 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Process state and logs stay in the running workspace
+**/.runtime/
+*.log

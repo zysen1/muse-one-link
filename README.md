@@ -15,6 +15,21 @@
 
 复制对应案例链接即可。想自定义，在后面加一句自己的需求，例如“做一个 30 秒的街边早餐短片”。如果 Muse 只总结了网页，再补一句：**“请按这个案例的执行说明直接搭建并测试，把可用入口给我。”**
 
+## 新增：把免费云电脑真正跑起来
+
+[打开完整案例：GitHub Codespaces + 口播计时器](cases/cloud/codespaces/README.md) · [可复制提示词](cases/cloud/codespaces/PROMPT.md)
+
+把这个链接发给 Muse 即可开始：
+
+```text
+https://github.com/zysen1/muse-one-link/tree/main/cases/cloud/codespaces
+请按里面的流程帮我申请或复用免费云电脑，部署并实际测试口播计时器，最后给我能打开的私有入口。
+```
+
+仓库包含真实截图、完整 Python 源码、启动/停止脚本和 Codespaces 启动配置。登录和免费额度由每个人自己的账号决定。本次样例由 Codex 在本机浏览器操作完成；Muse 仍需在你的环境里执行并验收。
+
+![口播计时器真实运行结果](cases/cloud/codespaces/screenshots/05-app.jpg)
+
 ## 这套用法的关键
 
 把程序和记录放在 Muse 云电脑，构件作为操作面板。需要其他设备或其他人调用时，再接实际可达的入口与权限。外部免费云环境可作为部署扩展，先核对当时的免费条件。

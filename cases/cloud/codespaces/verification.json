@@ -1,0 +1,43 @@
+{
+  "verified_at": "2026-11-13",
+  "actor": "Codex operating the user local browser; not a completed Muse replay",
+  "target": "GitHub Codespaces, 2 cores / 8 GB RAM / 32 GB disk",
+  "cloud_system": "Linux",
+  "cloud_python": "3.14.2",
+  "cloud_cpu_visible": 2,
+  "visibility": "Private",
+  "source_sha256": "7427dd9f3f2c32e9b69b1108aa537654a80f252b971f15a394081a61f22687f6",
+  "checks": [
+    {
+      "text": "你好，Muse！",
+      "cpm": 240,
+      "char_count": 8,
+      "estimated_seconds": 2
+    },
+    {
+      "text": "你 好\nMuse！",
+      "cpm": 240,
+      "char_count": 7,
+      "estimated_seconds": 1.75
+    }
+  ],
+  "source_and_cloud_hash_match": true,
+  "muse_replay_verified": false,
+  "devcontainer_fresh_provision_verified": false,
+  "notes": "The real cloud app and browser tests succeeded. The new repository automation is tested separately; account access and quotas must be checked by each user.",
+  "automation_local_validation": {
+    "platform": "macOS",
+    "checks": [
+      "start and API health",
+      "repeated start reuses PID",
+      "status and stop",
+      "unmanaged port is not taken over or stopped",
+      "health timeout cleans owned process",
+      "8 characters / 2 seconds",
+      "7 characters / 1.75 seconds"
+    ],
+    "result": "passed",
+    "test_processes_stopped": true,
+    "linux_process_identity_live_tested": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Muse One Link · 免费云电脑",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "口播计时器",
+      "onAutoForward": "notify"
+    }
+  },
+  "postStartCommand": "python3 cases/cloud/codespaces/start.py start",
+  "remoteUser": "vscode"
+}

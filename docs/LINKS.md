@@ -5,6 +5,7 @@
 | 工具 | 链接 |
 | --- | --- |
 | 连贯短片与抽卡 | [连贯短片与抽卡](https://github.com/zysen1/muse-one-link/tree/main/cases/video) |
+| 免费云电脑实测复刻 | [GitHub Codespaces + 口播计时器](https://github.com/zysen1/muse-one-link/tree/main/cases/cloud/codespaces) |
 | 免费云部署与工具箱 | [免费云部署与工具箱](https://github.com/zysen1/muse-one-link/tree/main/cases/cloud) |
 | 今日精选 | [今日精选](https://github.com/zysen1/muse-one-link/tree/main/cases/digest) |
 | 晚餐补货 | [晚餐补货](https://github.com/zysen1/muse-one-link/tree/main/cases/grocery) |
