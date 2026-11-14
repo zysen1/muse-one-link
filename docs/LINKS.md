@@ -8,7 +8,7 @@
 | 免费云电脑实测复刻 | [GitHub Codespaces + 口播计时器](https://github.com/zysen1/muse-one-link/tree/main/cases/cloud/codespaces) |
 | 免费云部署与工具箱 | [免费云部署与工具箱](https://github.com/zysen1/muse-one-link/tree/main/cases/cloud) |
 | 今日精选 | [今日精选](https://github.com/zysen1/muse-one-link/tree/main/cases/digest) |
-| 晚餐补货 | [晚餐补货](https://github.com/zysen1/muse-one-link/tree/main/cases/grocery) |
+| 外卖与买菜助手 | [外卖与买菜助手](https://github.com/zysen1/muse-one-link/tree/main/cases/grocery) |
 
 如果还想加一句，可以复制：
 
@@ -16,7 +16,7 @@
 请按这个链接里的执行说明直接搭建并测试，把能用的入口给我。
 ```
 
-自定义只需追加一句，例如“视频主题改成雨天咖啡馆”或“精选内容改成 Python 入门”。
+自定义只需追加一句，例如“视频主题改成雨天咖啡馆”“精选内容改成 Python 入门”，或“外卖不吃辣，预算 30 元，把红包和配送费一起比较”。
 
 ## 网页读取遇到问题
 
@@ -25,4 +25,4 @@
 - [连贯短片与抽卡原始说明](https://raw.githubusercontent.com/zysen1/muse-one-link/main/cases/video/README.md)
 - [免费云部署与工具箱原始说明](https://raw.githubusercontent.com/zysen1/muse-one-link/main/cases/cloud/README.md)
 - [今日精选原始说明](https://raw.githubusercontent.com/zysen1/muse-one-link/main/cases/digest/README.md)
-- [晚餐补货原始说明](https://raw.githubusercontent.com/zysen1/muse-one-link/main/cases/grocery/README.md)
+- [外卖与买菜助手原始说明](https://raw.githubusercontent.com/zysen1/muse-one-link/main/cases/grocery/README.md)

@@ -23,7 +23,7 @@
     },
     {
       "id": "grocery",
-      "label": "晚餐补货",
+      "label": "外卖与买菜助手",
       "entry": "cases/grocery/README.md",
       "url": "https://github.com/zysen1/muse-one-link/tree/main/cases/grocery"
     }
