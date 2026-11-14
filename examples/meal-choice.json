@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "fixture_id": "meal-choice-fictional-v1",
+  "fictional": true,
+  "data_kind": "fictional_acceptance_fixture",
+  "description": "完全虚构的外卖候选与优惠规则，仅用于验证选择逻辑；不是实时平台报价、用户红包或真实选购记录。",
+  "currency": "CNY",
+  "money_unit": "cents",
+  "platform_integration_status": "not_tested_by_this_fixture",
+  "cart_actions_performed": false,
+  "orders_submitted": false,
+  "preferences": {
+    "not_spicy": true,
+    "budget_cents": 3000,
+    "max_delivery_minutes": 45
+  },
+  "calculation_rules": {
+    "coupon_threshold_basis": "item_subtotal_cents",
+    "coupon_eligibility": "status must be active and item_subtotal_cents >= min_item_subtotal_cents",
+    "payable_formula": "item_subtotal_cents + delivery_and_packaging_cents - eligible_coupon_discount_cents",
+    "one_coupon_per_candidate": true,
+    "coupon_stacking": false,
+    "eligibility_filters": [
+      "not_spicy",
+      "payable_cents <= budget_cents",
+      "eta_minutes <= max_delivery_minutes"
+    ],
+    "ranking": [
+      "payable_cents ascending",
+      "eta_minutes ascending",
+      "id ascending"
+    ],
+    "scope": "Rules apply only to these fictional candidates. Real platforms require their actual pricing and coupon rules."
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "label": "虚构候选 A",
+      "fictional": true,
+      "item_subtotal_cents": 2600,
+      "delivery_and_packaging_cents": 450,
+      "spicy": false,
+      "eta_minutes": 35,
+      "coupon": {
+        "id": "fictional-A-500",
+        "status": "active",
+        "min_item_subtotal_cents": 2000,
+        "discount_cents": 500
+      }
+    },
+    {
+      "id": "B",
+      "label": "虚构候选 B",
+      "fictional": true,
+      "item_subtotal_cents": 2300,
+      "delivery_and_packaging_cents": 600,
+      "spicy": false,
+      "eta_minutes": 30,
+      "coupon": {
+        "id": "fictional-B-200",
+        "status": "active",
+        "min_item_subtotal_cents": 2000,
+        "discount_cents": 200
+      }
+    },
+    {
+      "id": "C",
+      "label": "虚构候选 C",
+      "fictional": true,
+      "item_subtotal_cents": 2000,
+      "delivery_and_packaging_cents": 200,
+      "spicy": true,
+      "eta_minutes": 25,
+      "coupon": {
+        "id": "fictional-C-1000",
+        "status": "active",
+        "min_item_subtotal_cents": 3000,
+        "discount_cents": 1000
+      }
+    }
+  ],
+  "acceptance_test_instructions": "Each test starts independently from the base fixture. Recursively merge preferences_override and candidate_overrides by candidate id; never carry changes from the previous test.",
+  "acceptance_tests": [
+    {
+      "id": "baseline",
+      "description": "不吃辣、预算30元、45分钟内：推荐A，备选B。C未达红包门槛且口味不符。",
+      "preferences_override": {},
+      "candidate_overrides": {},
+      "expected": {
+        "recommended_id": "A",
+        "backup_id": "B",
+        "eligible_ranked_ids": [
+          "A",
+          "B"
+        ],
+        "candidates": {
+          "A": {
+            "coupon_applied_cents": 500,
+            "payable_cents": 2550,
+            "eligible": true,
+            "exclusion_reasons": []
+          },
+          "B": {
+            "coupon_applied_cents": 200,
+            "payable_cents": 2700,
+            "eligible": true,
+            "exclusion_reasons": []
+          },
+          "C": {
+            "coupon_applied_cents": 0,
+            "coupon_rejection_reason": "minimum_not_met",
+            "payable_cents": 2200,
+            "eligible": false,
+            "exclusion_reasons": [
+              "spicy"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "a_coupon_expired",
+      "description": "仅A红包过期：A实付30.5元超预算，改推荐B。",
+      "preferences_override": {},
+      "candidate_overrides": {
+        "A": {
+          "coupon": {
+            "status": "expired"
+          }
+        }
+      },
+      "expected": {
+        "recommended_id": "B",
+        "backup_id": null,
+        "eligible_ranked_ids": [
+          "B"
+        ],
+        "candidates": {
+          "A": {
+            "coupon_applied_cents": 0,
+            "coupon_rejection_reason": "expired",
+            "payable_cents": 3050,
+            "eligible": false,
+            "exclusion_reasons": [
+              "over_budget"
+            ]
+          },
+          "B": {
+            "coupon_applied_cents": 200,
+            "payable_cents": 2700,
+            "eligible": true,
+            "exclusion_reasons": []
+          },
+          "C": {
+            "coupon_applied_cents": 0,
+            "coupon_rejection_reason": "minimum_not_met",
+            "payable_cents": 2200,
+            "eligible": false,
+            "exclusion_reasons": [
+              "spicy"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "delivery_limit_32",
+      "description": "从基线恢复A有效红包，仅把最晚送达设为32分钟：A超时，改推荐B。",
+      "preferences_override": {
+        "max_delivery_minutes": 32
+      },
+      "candidate_overrides": {},
+      "expected": {
+        "recommended_id": "B",
+        "backup_id": null,
+        "eligible_ranked_ids": [
+          "B"
+        ],
+        "candidates": {
+          "A": {
+            "coupon_applied_cents": 500,
+            "payable_cents": 2550,
+            "eligible": false,
+            "exclusion_reasons": [
+              "delivery_too_slow"
+            ]
+          },
+          "B": {
+            "coupon_applied_cents": 200,
+            "payable_cents": 2700,
+            "eligible": true,
+            "exclusion_reasons": []
+          },
+          "C": {
+            "coupon_applied_cents": 0,
+            "coupon_rejection_reason": "minimum_not_met",
+            "payable_cents": 2200,
+            "eligible": false,
+            "exclusion_reasons": [
+              "spicy"
+            ]
+          }
+        }
+      },
+      "additional_ui_acceptance": {
+        "action": "save preferences, close and reopen the tool",
+        "expected_preferences": {
+          "not_spicy": true,
+          "budget_cents": 3000,
+          "max_delivery_minutes": 32
+        },
+        "status": "require_runtime_verification"
+      }
+    }
+  ]
+}
